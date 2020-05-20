@@ -5,25 +5,25 @@
 
 #define qdo 262 
 #define qre 294
-#define qmi 330     //qÇ°×ºÎªµÍÒô£¬1ºó×ºÎª¸ßÒô£¬sÇ°×ºÎª°ëÒô½× 
+#define qmi 330     //qå‰ç¼€ä¸ºä½éŸ³ï¼Œ1åç¼€ä¸ºé«˜éŸ³ï¼Œså‰ç¼€ä¸ºåŠéŸ³é˜¶ 
 #define qfa 349
 #define qso 392
 #define qla 440
-#define qsi 494
+#define qxi 494
 #define Do 523
 #define re 578
 #define mi 659
 #define fa 698
 #define so 784
 #define la 880
-#define si 988
+#define xi 988
 #define do1 1046
 #define re1 1175
 #define mi1 1318
 #define fa1 1397
 #define so1 1568
 #define la1 1760
-#define si1 1976
+#define xi1 1976
 #define sqdo 277
 #define sqre 311
 #define sqfa 370
