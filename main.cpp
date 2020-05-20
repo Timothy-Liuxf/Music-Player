@@ -16,12 +16,12 @@ int main(int argc, char* argv[])
     {
         for (int i = 1; i < argc; ++i)
         {
-            if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'v') //ÏÔÊ¾°æ±¾ÐÅÏ¢
+            if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'v') //æ˜¾ç¤ºç‰ˆæœ¬ä¿¡æ¯
             {
                 std::cout << about << std::endl; 
                 continue; 
             }
-            else if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'o')    //²¥·ÅÖ÷¸è
+            else if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'o')    //æ’­æ”¾ä¸»æ­Œ
             {
                 system("cls");
                 SET_CONSOLE_COLOR(RED_COLOR, LIGHTYELLO_COLOR);
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
                 break;
             default:
 
-                //²¥·ÅÒôÀÖ
+                //êº„ë ´ï¥–ìžˆ
 
                 size_t len = inputSong.size();
                 for (size_t i = 0; i < len; ++i)
@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
                     break;
                 default:
 
-                    //²¥·ÅÒôÀÖ
+                    //æ’­æ”¾éŸ³ä¹
 
                     size_t len = inputSong.size();
                     for (size_t i = 0; i < len; ++i)
