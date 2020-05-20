@@ -3,12 +3,12 @@
 
 std::vector<song> inputSong; 
 
-int middle[]{ 0, Do, re, mi, fa, so, la, si }; 
-int high[]{ 0, do1, re1, mi1, fa1, so1, la1, si1 }; 
-int low[]{ 0, qdo, qre, qmi, qfa, qso, qla, qsi };
+int middle[]{ 0, Do, re, mi, fa, so, la, xi }; 
+int high[]{ 0, do1, re1, mi1, fa1, so1, la1, xi1 }; 
+int low[]{ 0, qdo, qre, qmi, qfa, qso, qla, qxi };
 
-//ĞİÖ¹·û0£¬ÖĞÒô1~7£¬¸ßÒô^1~^7£¬µÍÒô_1~_7, 1/2ÅÄ[1]~[7]£¬1/4ÅÄ{1}~{7}£¬ÑÓ³¤Ò»°ëX.£¨XÎªÄ³Òô·û£©£¬Á¬ĞøÒ»ÅÄ-
-//ÆäÖĞÓÅÏÈ¼¶£º^/_ > []/{} > ./- £¬ÓÅÏÈ¼¶¸ßµÄ¾àÀëÊı×Ö¸ü½ü
+//ä¼‘æ­¢ç¬¦0ï¼Œä¸­éŸ³1~7ï¼Œé«˜éŸ³^1~^7ï¼Œä½éŸ³_1~_7, 1/2æ‹[1]~[7]ï¼Œ1/4æ‹{1}~{7}ï¼Œå»¶é•¿ä¸€åŠX.ï¼ˆXä¸ºæŸéŸ³ç¬¦ï¼‰ï¼Œè¿ç»­ä¸€æ‹-
+//å…¶ä¸­ä¼˜å…ˆçº§ï¼š^/_ > []/{} > ./- ï¼Œä¼˜å…ˆçº§é«˜çš„è·ç¦»æ•°å­—æ›´è¿‘
 
 int readSong(const char* src)
 {
@@ -18,7 +18,7 @@ int readSong(const char* src)
 	char tuneTmp = '9';
 	int height = MID;
 	int length = WHOLE;
-	int prolong = false; //ÑÓ³¤0.5±¶
+	int prolong = false; //å»¶é•¿0.5å€
 	std::stack<char> stk; 
 	while (fin >> buf)
 	{
