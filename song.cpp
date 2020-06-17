@@ -23,7 +23,7 @@ std::string operator* (std::string s, unsigned int n)
 }
 
 //休止符0，中音1~7，高音^1~^7，低音_1~_7, 1/2拍[1]~[7]，1/4拍{1}~{7}，延长一半X.（X为某音符），连续一拍-
-//其中优先级：^/_ > []/{} > # > ./- ，优先级高的距离数字更近
+///其中优先级：^/_ > []/{} > # > ./- ，优先级高的距离数字更近
 
 int readSong(const char* src)
 {
@@ -104,28 +104,24 @@ int readSong(const char* src)
 		case '[':
 			if (tuneTmp != '9')
 			{
-				if (PUSH_TUNE()) return GRAMMAR_MISTAKE;
-				tuneTmp = '9';
-				height = MID;
-				enlarge = 0;
-				rise = prolong = false;
+				if (PUSH_TUNE()) return GRAMMAR_MISTAKE; 
 			}
 			++shorten;
 			stk.push('[');
 			break; 
 		case '^':
-			if (tuneTmp != '9') PUSH_TUNE();
+			if (tuneTmp != '9') if (PUSH_TUNE()) return GRAMMAR_MISTAKE;
 			if (height != MID) return GRAMMAR_MISTAKE; 
 			height = HIGH; 
 			break; 
 		case '_':
-			if (tuneTmp != '9') PUSH_TUNE();
+			if (tuneTmp != '9') if (PUSH_TUNE()) return GRAMMAR_MISTAKE;
 			if (height != MID) return GRAMMAR_MISTAKE; 
 			height = LOW; 
 			break; 
 		case '#':
 			if (rise) return GRAMMAR_MISTAKE; 
-			if (tuneTmp != '9') PUSH_TUNE(); 
+			if (tuneTmp != '9') if (PUSH_TUNE()) return GRAMMAR_MISTAKE;
 			rise = true; 
 			break; 
 		case ']':
