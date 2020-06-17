@@ -102,8 +102,6 @@ TMPL是一种基于简谱的语言，Music Player解释该语言时会自动忽�
 
 《小燕子》  
 
-<img src = "example2.gif" width = "60%">
-
 用TMPL表示为：  
 
 ```TMPL
