@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
                 std::cout << about << std::endl; 
                 continue; 
             }
-            else if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'o')    //播放主歌
+            else if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'o')    //播放主音乐
             {
                 system("cls");
                 SET_CONSOLE_COLOR(RED_COLOR, LIGHTYELLO_COLOR);
@@ -37,6 +37,7 @@ int main(int argc, char* argv[])
                 continue;
             }
             inputSong.clear(); 
+            std::cout << parsing << argv[i] << "..." << std::endl; 
             switch (readSong(argv[i]))
             {
             case FILE_NOT_EXIST:
@@ -47,11 +48,13 @@ int main(int argc, char* argv[])
                 break;
             default:
 
-                //꺄렴稜있
-
+                //播放音乐
+                std::cout << parsed << argv[i] << '!' << std::endl; 
                 size_t len = inputSong.size();
                 for (size_t i = 0; i < len; ++i)
                 {
+                    std::cout << inputSong[i].str; 
+                    std::flush(std::cout); 
                     Beep(inputSong[i].tune, static_cast<int>(inputSong[i].pause * pai));
                 }
             }
