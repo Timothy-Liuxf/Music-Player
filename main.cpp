@@ -49,6 +49,7 @@ int main(int argc, char* argv[])
             default:
 
                 //播放音乐
+
                 std::cout << parsed << argv[i] << '!' << std::endl; 
                 size_t len = inputSong.size();
                 for (size_t i = 0; i < len; ++i)
@@ -57,6 +58,7 @@ int main(int argc, char* argv[])
                     std::flush(std::cout); 
                     Beep(inputSong[i].tune, static_cast<int>(inputSong[i].pause * pai));
                 }
+                std::cout << std::endl; 
             }
         }
         
@@ -79,6 +81,7 @@ int main(int argc, char* argv[])
                 std::cin.clear(); 
                 std::cin.ignore(65535, '\n'); 
                 inputSong.clear();
+                std::cout << parsing << src << "..." << std::endl;
                 switch (readSong(src.c_str()))
                 {
                 case FILE_NOT_EXIST:
@@ -91,11 +94,15 @@ int main(int argc, char* argv[])
 
                     //播放音乐
 
+                    std::cout << parsed << src << '!' << std::endl;
                     size_t len = inputSong.size();
                     for (size_t i = 0; i < len; ++i)
                     {
+                        std::cout << inputSong[i].str;
+                        std::flush(std::cout);
                         Beep(inputSong[i].tune, static_cast<int>(inputSong[i].pause * pai));
                     }
+                    std::cout << std::endl; 
                 }
             }
             /*else if (choice == 'B' || choice == 'b')
