@@ -5,7 +5,7 @@
 
 #define qdo 262 
 #define qre 294
-#define qmi 330     //q鍓嶇紑涓轰綆闊筹紝1鍚庣紑涓洪珮闊筹紝s鍓嶇紑涓哄崐闊抽樁 
+#define qmi 330     //q前缀为低音，1后缀为高音，s前缀为半音阶 
 #define qfa 349
 #define qso 392
 #define qla 440

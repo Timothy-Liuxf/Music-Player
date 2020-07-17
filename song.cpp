@@ -2,6 +2,7 @@
 #include "song.h"
 
 std::vector<song> inputSong; 
+int pai = DEFAULT_PAI; 
 
 int middle[]{ 0, Do, re, mi, fa, so, la, xi }; 
 int high[]{ 0, do1, re1, mi1, fa1, so1, la1, xi1 }; 
@@ -22,22 +23,37 @@ std::string operator* (std::string s, unsigned int n)
 	return s; 
 }
 
-//ä¼‘æ­¢ç¬¦0ï¼Œä¸­éŸ³1~7ï¼Œé«˜éŸ³^1~^7ï¼Œä½éŸ³_1~_7, 1/2æ‹[1]~[7]ï¼Œ1/4æ‹{1}~{7}ï¼Œå»¶é•¿ä¸€åŠX.ï¼ˆXä¸ºæŸéŸ³ç¬¦ï¼‰ï¼Œè¿ç»­ä¸€æ‹-
-///å…¶ä¸­ä¼˜å…ˆçº§ï¼š^/_ > []/{} > # > ./- ï¼Œä¼˜å…ˆçº§é«˜çš„è·ç¦»æ•°å­—æ›´è¿‘
+//ĞİÖ¹·û0£¬ÖĞÒô1~7£¬¸ßÒô^1~^7£¬µÍÒô_1~_7, 1/2ÅÄ[1]~[7]£¬1/4ÅÄ{1}~{7}£¬ÑÓ³¤Ò»°ëX.£¨XÎªÄ³Òô·û£©£¬Á¬ĞøÒ»ÅÄ-
+///ÆäÖĞÓÅÏÈ¼¶£º^/_ > []/{} > # > ./- £¬ÓÅÏÈ¼¶¸ßµÄ¾àÀëÊı×Ö¸ü½ü
+//µÚÒ»¸ö×Ö·û£¬Ò»¸ö´óĞ´×ÖÄ¸£¬´ú±íÄ³´óµ÷£¨Ä¿Ç°×÷±£Áô×Ö£¬ÎŞÊµ¼Ê×÷ÓÃ£¬ÓÃÀ´±êÊ¶ĞÂÎÄ¼ş£©
+//µÚ¶şĞĞ£¬Ò»¸ö·ÖÊıy/x£¬±íÊ¾ÒÔx·ÖÒô·ûÎªÒ»ÅÄ£¬Ã¿Ğ¡½ÚÓĞyÅÄ
+//µÚÈıĞĞ£¬ÀÖÇúµÄËÙ¶È£¬¼´1minÄÚµÄÅÄÊı
 
 int readSong(const char* src)
 {
 	std::ifstream fin(src, std::ios::in); 
 	if (!fin) return FILE_NOT_EXIST; 
-	char buf; 
+	int n, x, y; 
+	char buf = 0; 
 	char tuneTmp = '9';
 	int height = MID;
 	int shorten = 0;		
 	int enlarge = 0; 
 	int needToMinus = 0; 
-	bool prolong = false; //å»¶é•¿0.5å€
-	bool rise = false;		//å‡åŠéŸ³
+	bool prolong = false; //ÑÓ³¤0.5±¶
+	bool rise = false;		//Éı°ëÒô
 	std::stack<char> stk; 
+	buf = fin.peek(); 
+	if (buf >= 'A' && buf <= 'Z')
+	{
+		fin.get(); 
+		fin >> y; 
+		if (!fin || fin.get() != '/') return GRAMMAR_MISTAKE; 
+		fin >> x >> n; 
+		if (!fin || x <= 0 || n <= 0) return GRAMMAR_MISTAKE; 
+		pai = 4 * 60000 / (n * x);
+	}
+	else pai = DEFAULT_PAI; 
 	std::function<int(void)> PUSH_TUNE = [&]() {
 		if (!rise)
 		{

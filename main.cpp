@@ -7,21 +7,18 @@
 #include "song.h"
 
 
-#define pai 800
-
-
 int main(int argc, char* argv[])
 {
     if (argc > 1)
     {
         for (int i = 1; i < argc; ++i)
         {
-            if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'v') //æ˜¾ç¤ºç‰ˆæœ¬ä¿¡æ¯
+            if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'v') //ÏÔÊ¾°æ±¾ÐÅÏ¢
             {
                 std::cout << about << std::endl; 
                 continue; 
             }
-            else if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'o')    //æ’­æ”¾ä¸»éŸ³ä¹
+            else if (strlen(argv[i]) == 2 && argv[i][0] == '-' && argv[i][1] == 'o')    //²¥·ÅÖ÷ÒôÀÖ
             {
                 system("cls");
                 SET_CONSOLE_COLOR(RED_COLOR, LIGHTYELLO_COLOR);
@@ -48,7 +45,7 @@ int main(int argc, char* argv[])
                 break;
             default:
 
-                //æ’­æ”¾éŸ³ä¹
+                //²¥·ÅÒôÀÖ
 
                 std::cout << parsed << argv[i] << '!' << std::endl; 
                 size_t len = inputSong.size();
@@ -92,7 +89,7 @@ int main(int argc, char* argv[])
                     break;
                 default:
 
-                    //æ’­æ”¾éŸ³ä¹
+                    //²¥·ÅÒôÀÖ
 
                     std::cout << parsed << src << '!' << std::endl;
                     size_t len = inputSong.size();

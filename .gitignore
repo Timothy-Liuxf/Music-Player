@@ -1,0 +1,12 @@
+/.vs/
+*.aps
+*.vcxproj.*
+*.vcxproj
+/Debug/
+/Release/
+*.sln
+*.jpg
+*.png
+src.txt
+ORGICON.ico
+

@@ -20,6 +20,8 @@
 #define MID 1
 #define HIGH 2
 
+#define DEFAULT_PAI 800
+
 /***#define PUSH_TUNE() do {if (!stk.empty()) return GRAMMAR_MISTAKE;\
 double len;\
 if (length == HALF) len = 0.5;\
@@ -44,8 +46,8 @@ struct song
 
 static song mainsong[]
 {
-    {mi1, 1, "ã€‡"}, {so1, 2, "ã€‡"}, {fa1, 1, "ã€‡"}, {mi1, 1, "ã€‡"}, {re1, 1.5, "ã€‡"}, {mi1, 0.5, "ã€‡"}, {fa1, 1, "ã€‡"}, {zero, 0.5, "ã€‡\n"},
-    {fa1, 0.5, "ã€‡"}, {mi1, 1.5, "ã€‡"}, {mi1, 0.5, "ã€‡"}, {re1, 1.5, "ã€‡"}, {re1, 0.5, "ã€‡"}, {do1, 3, "ã€‡\n"},
+    {mi1, 1, "©–"}, {so1, 2, "©–"}, {fa1, 1, "©–"}, {mi1, 1, "©–"}, {re1, 1.5, "©–"}, {mi1, 0.5, "©–"}, {fa1, 1, "©–"}, {zero, 0.5, "©–\n"},
+    {fa1, 0.5, "©–"}, {mi1, 1.5, "©–"}, {mi1, 0.5, "©–"}, {re1, 1.5, "©–"}, {re1, 0.5, "©–"}, {do1, 3, "©–\n"},
     {so, 1, "Debout"}, {do1, 1.5, "! "}, {xi, 0.5, "Les "}, {re1, 0.5, "damnes"}, {do1, 0.5, " "}, {so, 0.5, "de "}, {mi, 0.5, "la "}, {la, 2, "terre"}, {fa, 1, "! "}, {zero, 0.5, "\n"}, //Debout! Les damnes de la terre
     {la, 0.5, "Debout"}, {re1, 1.5, "! "}, {do1, 0.5, "Les "}, {xi, 0.5, "forcats"}, {la, 0.5, " "}, {so, 0.5, "de "}, {fa, 0.5, "la "}, {mi, 3, "faim! \n"}, //Debout! Les forcats de la faim
     {so, 1, "La "}, {do1, 1.5, "raison"}, {xi, 0.5, " "}, {re1, 0.5, "tonne "}, {do1, 0.5, "en "}, {so, 0.5, "son "}, {mi, 0.5, "cratere"}, {la, 2, ". "}, {fa, 0.5, "\n"},     //La raison tonne son cratere
@@ -64,9 +66,12 @@ static song mainsong[]
     {fa1, 0.5, "sera"}, {mi1, 1.5, " "}, {mi1, 0.5, "le "}, {re1, 1.5, "genre "}, {re1, 0.5, "humain! "}, {do1, 4, "\n"}, //Sera le genre humain
 }; 
 
-extern std::vector<song> inputSong; //è¯»å…¥æ­Œæ›²
+extern std::vector<song> inputSong; //¶ÁÈë¸èÇú
 
-int readSong(const char* src);    //è¯»å…¥æ­Œæ›²
+int readSong(const char* src);    //¶ÁÈë¸èÇú
+
+extern int pai; //Ò»¸öËÄ·ÖÒô·û³ÖÐøµÄºÁÃëÊý
+
 
 
 #endif
