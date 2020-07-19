@@ -12,6 +12,9 @@
 #include <cmath>
 #include <functional>
 
+void justPushedTune(); 
+void justParsedFormat(char tune, int numOfPai, int perPai, int speed); 
+
 #define INPUT_SUCCESS 0
 #define FILE_NOT_EXIST 1
 #define GRAMMAR_MISTAKE 2

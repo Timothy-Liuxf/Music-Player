@@ -51,7 +51,8 @@ int readSong(const char* src)
 		if (!fin || fin.get() != '/') return GRAMMAR_MISTAKE; 
 		fin >> x >> n; 
 		if (!fin || x <= 0 || n <= 0) return GRAMMAR_MISTAKE; 
-		pai = 4 * 60000 / (n * x);
+		pai = 4 * 60000 / (n * x); 
+		justParsedFormat(buf, y, x, n); 
 	}
 	else pai = DEFAULT_PAI; 
 	std::function<int(void)> PUSH_TUNE = [&]() {
@@ -62,14 +63,17 @@ int readSong(const char* src)
 			case MID:
 				inputSong.push_back(song(middle[tuneTmp - '0'], (enlarge ? enlarge + 1 : pow(2, -shorten)) * (prolong ? 1.5 : 1), 
 					(std::string("[") * shorten + tuneStr[tuneTmp - '0'] + std::string("]") * shorten + (prolong ? std::string(".") : std::string("")) + (std::string("-") * enlarge)).c_str()));
+				justPushedTune(); 
 				break;
 			case HIGH:
 				inputSong.push_back(song(high[tuneTmp - '0'], (enlarge ? enlarge + 1 : pow(2, -shorten)) * (prolong ? 1.5 : 1), 
 					(std::string("[") * shorten + std::string("^") + tuneStr[tuneTmp - '0'] + std::string("]") * shorten + (prolong ? std::string(".") : std::string("")) + (std::string("-") * enlarge)).c_str()));
+				justPushedTune(); 
 				break;
 			case LOW:
 				inputSong.push_back(song(low[tuneTmp - '0'], (enlarge ? enlarge + 1 : pow(2, -shorten)) * (prolong ? 1.5 : 1), 
 					(std::string("[") * shorten + std::string("_") + tuneStr[tuneTmp - '0'] + std::string("]") * shorten + (prolong ? std::string(".") : std::string("")) + (std::string("-") * enlarge)).c_str()));
+				justPushedTune(); 
 				break;
 			default:
 				return 1;
@@ -82,14 +86,17 @@ int readSong(const char* src)
 			case MID:
 				inputSong.push_back(song(smiddle[tuneTmp - '0'], (enlarge ? enlarge + 1 : pow(2, -shorten)) * (prolong ? 1.5 : 1), 
 					(std::string("[") * shorten + std::string("#") + tuneStr[tuneTmp - '0'] + std::string("]") * shorten + (prolong ? std::string(".") : std::string("")) + (std::string("-") * enlarge)).c_str()));
+				justPushedTune();
 				break;
 			case HIGH:
 				inputSong.push_back(song(shigh[tuneTmp - '0'], (enlarge ? enlarge + 1 : pow(2, -shorten)) * (prolong ? 1.5 : 1), 
 					(std::string("[") * shorten + std::string("#^") + tuneStr[tuneTmp - '0'] + std::string("]") * shorten + (prolong ? std::string(".") : std::string("")) + (std::string("-") * enlarge)).c_str()));
+				justPushedTune();
 				break;
 			case LOW:
 				inputSong.push_back(song(slow[tuneTmp - '0'], (enlarge ? enlarge + 1 : pow(2, -shorten)) * (prolong ? 1.5 : 1), 
 					(std::string("[") * shorten + std::string("#_") + tuneStr[tuneTmp - '0'] + std::string("]") * shorten + (prolong ? std::string(".") : std::string("")) + (std::string("-") * enlarge)).c_str()));
+				justPushedTune(); 
 				break;
 			default:
 				return 1;
