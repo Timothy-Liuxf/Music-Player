@@ -2,7 +2,7 @@
 #include "song.h"
 
 std::vector<song> inputSong; 
-int pai = DEFAULT_PAI; 
+int pai = 4 * 60000 / (DEFAULT_PER_PAI * DEFAULT_SPEED);
 
 int middle[]{ 0, Do, re, mi, fa, so, la, xi }; 
 int high[]{ 0, do1, re1, mi1, fa1, so1, la1, xi1 }; 
@@ -33,7 +33,7 @@ int readSong(const char* src)
 {
 	std::ifstream fin(src, std::ios::in); 
 	if (!fin) return FILE_NOT_EXIST; 
-	int n, x, y; 
+	int speed, perPai, numOfPai; 
 	char buf = 0; 
 	char tuneTmp = '9';
 	int height = MID;
@@ -47,14 +47,20 @@ int readSong(const char* src)
 	if (buf >= 'A' && buf <= 'Z')
 	{
 		fin.get(); 
-		fin >> y; 
+		fin >> numOfPai; 
 		if (!fin || fin.get() != '/') return GRAMMAR_MISTAKE; 
-		fin >> x >> n; 
-		if (!fin || x <= 0 || n <= 0) return GRAMMAR_MISTAKE; 
-		pai = 4 * 60000 / (n * x); 
-		justParsedFormat(buf, y, x, n); 
+		fin >> perPai >> speed; 
+		if (!fin || perPai <= 0 || speed <= 0) return GRAMMAR_MISTAKE; 
 	}
-	else pai = DEFAULT_PAI; 
+	else
+	{
+		buf = 'C'; 
+		numOfPai = DEFAULT_NUM_PAI; 
+		perPai = DEFAULT_PER_PAI; 
+		speed = DEFAULT_SPEED; 
+	}
+	pai = 4 * 60000 / (perPai * speed);
+	justParsedFormat(buf, numOfPai, perPai, speed); 
 	std::function<int(void)> PUSH_TUNE = [&]() {
 		if (!rise)
 		{

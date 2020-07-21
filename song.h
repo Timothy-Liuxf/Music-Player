@@ -23,7 +23,10 @@ void justParsedFormat(char tune, int numOfPai, int perPai, int speed);
 #define MID 1
 #define HIGH 2
 
-#define DEFAULT_PAI 800
+#define DEFAULT_TUNE 'C'
+#define DEFAULT_NUM_PAI 2
+#define DEFAULT_PER_PAI 4
+#define DEFAULT_SPEED 75
 
 /***#define PUSH_TUNE() do {if (!stk.empty()) return GRAMMAR_MISTAKE;\
 double len;\
