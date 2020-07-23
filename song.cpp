@@ -25,7 +25,7 @@ std::string operator* (std::string s, unsigned int n)
 
 //休止符0，中音1~7，高音^1~^7，低音_1~_7, 1/2拍[1]~[7]，1/4拍{1}~{7}，延长一半X.（X为某音符），连续一拍-
 ///其中优先级：^/_ > []/{} > # > ./- ，优先级高的距离数字更近
-//第一个字符，一个大写字母，代表某大调（目前作保留字，无实际作用，用来标识新文件）
+//第一行，一个字符或两个字符，代表主因和调式：第一个字符为#代表声调，b代表降调，后面可跟一个大写。小写字母A~G、a~g代表大调或小调（目前作保留字，无实际作用，用来标识新文件）
 //第二行，一个分数y/x，表示以x分音符为一拍，每小节有y拍
 //第三行，乐曲的速度，即1min内的拍数
 
@@ -34,18 +34,59 @@ int readSong(const char* src)
 	std::ifstream fin(src, std::ios::in); 
 	if (!fin) return FILE_NOT_EXIST; 
 	int speed, perPai, numOfPai; 
-	char buf = 0; 
+	char buf = 0, app = 0; 
 	char tuneTmp = '9';
 	int height = MID;
 	int shorten = 0;		
 	int enlarge = 0; 
 	int needToMinus = 0; 
-	bool prolong = false; //延长0.5倍
-	bool rise = false;		//升半音
+	bool prolong = false;				//延长0.5倍
+	bool rise = false;					//升半音
 	std::stack<char> stk; 
-	buf = fin.peek(); 
-	if (buf >= 'A' && buf <= 'Z')
+	app = fin.peek(); 
+	if (!fin) return INPUT_SUCCESS;		//空文件
+
+	//读取格式
+	if (app == '#')
 	{
+		fin.get(); 
+		buf = fin.peek(); 
+		if (buf >= 'A' && buf <= 'G' || buf >= 'a' && buf <= 'g')
+		{
+			fin.get(); 
+			fin >> numOfPai;
+			if (!fin || fin.get() != '/') return GRAMMAR_MISTAKE;
+			fin >> perPai >> speed;
+			if (!fin || perPai <= 0 || speed <= 0) return GRAMMAR_MISTAKE; 
+		}
+		else
+		{
+			fin.putback(app); 
+			goto oldFile; 
+		}
+		
+	}
+	else if (app == 'b')
+	{
+		fin.get(); 
+		buf = fin.peek(); 
+		if (buf == '\n' || buf == ' ')
+		{
+			app = 0;
+			buf = 'b';
+		}
+		else if (buf >= 'A' && buf <= 'G' || buf >= 'a' && buf <= 'g');
+		else return GRAMMAR_MISTAKE; 
+		fin.get(); 
+		fin >> numOfPai;
+		if (!fin || fin.get() != '/') return GRAMMAR_MISTAKE;
+		fin >> perPai >> speed;
+		if (!fin || perPai <= 0 || speed <= 0) return GRAMMAR_MISTAKE; 
+	}
+	else if (app >= 'A' && app <= 'G' || app >= 'a' && app <= 'g')
+	{
+		buf = app; 
+		app = 0; 
 		fin.get(); 
 		fin >> numOfPai; 
 		if (!fin || fin.get() != '/') return GRAMMAR_MISTAKE; 
@@ -54,13 +95,16 @@ int readSong(const char* src)
 	}
 	else
 	{
+		//Old file
+	oldFile: 
+		app = 0; 
 		buf = 'C'; 
 		numOfPai = DEFAULT_NUM_PAI; 
 		perPai = DEFAULT_PER_PAI; 
 		speed = DEFAULT_SPEED; 
 	}
 	pai = 4 * 60000 / (perPai * speed);
-	justParsedFormat(buf, numOfPai, perPai, speed); 
+	justParsedFormat(app, buf, numOfPai, perPai, speed); 
 	std::function<int(void)> PUSH_TUNE = [&]() {
 		if (!rise)
 		{

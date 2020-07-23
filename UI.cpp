@@ -130,9 +130,11 @@ void mainConsoleUI(int argc, char* argv[])
     CloseHandle(hConsoleOutput); 
 }
 
-void justParsedFormat(char tune, int numOfPai, int perPai, int speed)
+void justParsedFormat(char app, char tune, int numOfPai, int perPai, int speed)
 {
-    std::cout << std::endl << 'C' << std::endl << numOfPai << '/' << perPai << std::endl << "Speed: " << speed << " beats/min" << std::endl; 
+    std::cout << std::endl; 
+    if (app) std::cout << app; 
+    std::cout << tune << "(In fact C)" << std::endl << numOfPai << '/' << perPai << std::endl << "Speed: " << speed << " beats/min" << std::endl;
 }
 
 void justPushedTune()

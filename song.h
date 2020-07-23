@@ -13,7 +13,7 @@
 #include <functional>
 
 void justPushedTune(); 
-void justParsedFormat(char tune, int numOfPai, int perPai, int speed); 
+void justParsedFormat(char app, char tune, int numOfPai, int perPai, int speed); 
 
 #define INPUT_SUCCESS 0
 #define FILE_NOT_EXIST 1

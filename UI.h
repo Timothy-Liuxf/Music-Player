@@ -14,7 +14,7 @@ extern COORD orgCursorPos;
 extern HANDLE hConsoleOutput; 
 extern HWND hConsoleWnd; 
 
-void justParsedFormat(char tune, int numOfPai, int perPai, int speed); 
+void justParsedFormat(char app, char tune, int numOfPai, int perPai, int speed); 
 
 void justPushedTune(); 
 
