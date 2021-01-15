@@ -9,6 +9,15 @@ void mainConsoleUI(int argc, char* argv[])
     hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE); 
     hConsoleWnd = GetConsoleWindow(); 
     SET_CONSOLE_COLOR(BLACK_COLOR, WHITE_COLOR); 
+    
+    std::thread
+    (
+        []()
+        {
+            while (true) PlaySound(TEXT("data\\nullsound.wav"), NULL, SND_SYNC);
+        }
+    ).detach();
+
     if (argc > 1)
     {
         for (int i = 1; i < argc; ++i)
